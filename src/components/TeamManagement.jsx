@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { proxy } from "../../package.json";
 import { connect } from "react-redux";
 import TeamSchedule from "./TeamSchedule";
 import PropTypes from "prop-types";
@@ -157,7 +158,7 @@ class TeamManagement extends Component {
         <div className="d-inline-flex gap-3 mb-4 justify-content-center align-items-center">
           <img
             className="organization-logo"
-            src={`http://localhost:5000/public/${org ? org.logo : ""}`}
+            src={`${proxy}public/${org ? org.logo : ""}`}
             alt=""
           />
           <div className="organization-team-header">
@@ -213,7 +214,7 @@ class TeamManagement extends Component {
                               {user.profileImg ? (
                                 <img
                                   className="organization-logo"
-                                  src={`http://localhost:5000/public/${
+                                  src={`${proxy}public/${
                                     user.profileImg ? user.profileImg : ""
                                   }`}
                                   alt="..."
@@ -272,7 +273,7 @@ class TeamManagement extends Component {
                       <div>
                         <img
                           className="profile-pic-team-admin"
-                          src={`http://localhost:5000/public/${
+                          src={`${proxy}public/${
                             a.user_recipient.profileImg
                               ? a.user_recipient.profileImg
                               : ""

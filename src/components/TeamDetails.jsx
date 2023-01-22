@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { proxy } from "../../package.json";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getOrganization } from "../actions/organizationActions";
@@ -34,7 +35,7 @@ class TeamDetails extends Component {
             <div className="d-inline-flex gap-3 mb-4 justify-content-center align-items-center">
               <img
                 className="organization-logo"
-                src={`http://localhost:5000/public/${this.props.organization.selected.logo}`}
+                src={`${proxy}public/${this.props.organization.selected.logo}`}
                 alt=""
               />
               <h2>{this.props.organization.selected.name}</h2>

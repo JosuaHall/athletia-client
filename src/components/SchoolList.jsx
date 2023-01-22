@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { proxy } from "../../package.json";
 import {
   getOrganizationList,
   setCurrentOrganization,
@@ -31,7 +32,6 @@ class SchoolList extends Component {
 
   displayOrganizations() {
     const organizations = this.props.organization.organization_list;
-    const url = "localhost://5000/public/";
     return (
       <ul className="organization-list">
         {organizations.map((organization) => (
@@ -43,7 +43,7 @@ class SchoolList extends Component {
           >
             <img
               className="organization-logo"
-              src={`http://localhost:5000/public/${organization.logo}`}
+              src={`${proxy}public/${organization.logo}`}
               alt=""
             />
             <div>{organization.name}</div>

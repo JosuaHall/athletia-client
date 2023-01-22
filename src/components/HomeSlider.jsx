@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import { proxy } from "../../package.json";
 import {
   attendEvent,
   unattendEvent,
@@ -116,7 +117,7 @@ class HomeSlider extends Component {
                     <div key={user._id}>
                       <img
                         className="profileImg-attending"
-                        src={`http://localhost:5000/public/${
+                        src={`${proxy}public/${
                           user.profileImg ? user.profileImg : ""
                         }`}
                         alt=""
@@ -188,7 +189,7 @@ class HomeSlider extends Component {
 
                     <img
                       className="organization-logo"
-                      src={`http://localhost:5000/public/${this.props.organization.allOrganizations
+                      src={`${proxy}public/${this.props.organization.allOrganizations
                         .filter((org) => {
                           return org.name == event.opponent;
                         })
@@ -238,7 +239,7 @@ class HomeSlider extends Component {
                       <div key={user._id}>
                         <img
                           className="profileImg-attending"
-                          src={`http://localhost:5000/public/${
+                          src={`${proxy}public/${
                             user.profileImg ? user.profileImg : ""
                           }`}
                           alt=""
@@ -315,7 +316,7 @@ class HomeSlider extends Component {
                       )}
                       <img
                         className="organization-logo"
-                        src={`http://localhost:5000/public/${this.props.organization.allOrganizations
+                        src={`${proxy}public/${this.props.organization.allOrganizations
                           .filter((org) => {
                             return org.name == event.opponent;
                           })
@@ -365,7 +366,7 @@ class HomeSlider extends Component {
                       <div key={user._id}>
                         <img
                           className="profileImg-attending"
-                          src={`http://localhost:5000/public/${
+                          src={`${proxy}public/${
                             user.profileImg ? user.profileImg : ""
                           }`}
                           alt=""
@@ -442,7 +443,7 @@ class HomeSlider extends Component {
                       )}
                       <img
                         className="organization-logo"
-                        src={`http://localhost:5000/public/${this.props.organization.allOrganizations
+                        src={`${proxy}public/${this.props.organization.allOrganizations
                           .filter((org) => {
                             return org.name == event.opponent;
                           })
@@ -515,7 +516,7 @@ class HomeSlider extends Component {
                             <div>
                               <img
                                 className="organization-logo"
-                                src={`http://localhost:5000/public/${
+                                src={`${proxy}public/${
                                   user.profileImg ? user.profileImg : ""
                                 }`}
                                 alt="..."
@@ -535,7 +536,7 @@ class HomeSlider extends Component {
                           <div>
                             <img
                               className="organization-logo"
-                              src={`http://localhost:5000/public/${
+                              src={`${proxy}public/${
                                 user.profileImg ? user.profileImg : ""
                               }`}
                               alt="..."

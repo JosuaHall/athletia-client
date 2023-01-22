@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { updateProfilePicture } from "../actions/authActions";
+import { proxy } from "../../package.json";
 
 class Profile extends Component {
   state = {
@@ -65,7 +66,7 @@ class Profile extends Component {
                     src={
                       this.state.url
                         ? this.state.url
-                        : `http://localhost:5000/public/${this.props.user.user.profileImg}`
+                        : `${proxy}public/${this.props.user.user.profileImg}`
                     }
                     onMouseOver={this.handleMouseOver}
                     onMouseOut={this.handleMouseOut}
@@ -116,10 +117,7 @@ class Profile extends Component {
               <React.Component key={org._id}>
                 <div className="">
                   <div>
-                    <img
-                      src={`http://localhost:5000/public/${org.logo}`}
-                      alt=""
-                    />
+                    <img src={`${proxy}public/${org.logo}`} alt="" />
                   </div>
                   <div>{org.name}</div>
                 </div>
@@ -135,10 +133,7 @@ class Profile extends Component {
                 <div className="teams-followed" key={org._id}>
                   <div className="logo-team-label">
                     <div>
-                      <img
-                        src={`http://localhost:5000/public/${org.logo}`}
-                        alt=""
-                      />
+                      <img src={`${proxy}public/${org.logo}`} alt="" />
                     </div>
                     <div>{org.name}</div>
                   </div>

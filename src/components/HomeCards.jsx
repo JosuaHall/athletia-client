@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import HomeSlider from "./HomeSlider";
 import Select from "react-select";
+import { proxy } from "../../package.json";
 
 import {
   followTeam,
@@ -156,7 +157,7 @@ class HomeCards extends Component {
                 <div>
                   <img
                     className="organization-logo"
-                    src={`http://localhost:5000/public/${
+                    src={`${proxy}public/${
                       first_followed_org ? first_followed_org.logo : ""
                     }`}
                     alt=""

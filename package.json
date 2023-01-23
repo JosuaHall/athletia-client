@@ -2,6 +2,7 @@
   "name": "wolf-watch",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://athletia.onrender.com",
   "dependencies": {
     "@date-io/moment": "^1.3.13",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",

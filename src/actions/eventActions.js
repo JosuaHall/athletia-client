@@ -10,6 +10,7 @@ import {
   ORGANIZATION_UPDATED,
 } from "./types";
 import axios from "axios";
+import { proxy } from "../../package.json";
 
 export const createEvent =
   ({ teamid, date_time, competitor, home_away }, amenities) =>
@@ -30,7 +31,7 @@ export const createEvent =
     });
 
     axios
-      .put(`/api/organizations/create/event/${teamid}`, body, config)
+      .put(`${proxy}/api/organizations/create/event/${teamid}`, body, config)
       .then((res) => {
         dispatch({ type: EVENT_CREATED, payload: res.data });
       })
@@ -43,7 +44,9 @@ export const deleteEvent =
   ({ orgid, teamid, eventid }) =>
   (dispatch) => {
     axios
-      .put(`/api/organizations/delete/event/${orgid}/${teamid}/${eventid}`)
+      .put(
+        `${proxy}/api/organizations/delete/event/${orgid}/${teamid}/${eventid}`
+      )
       .then((res) => {
         dispatch({ type: EVENT_DELETED, payload: res.data });
       })
@@ -63,7 +66,7 @@ export const getEventList = (teamid) => (dispatch) => {
   const body = JSON.stringify({ teamid });
 
   axios
-    .get(`/api/organizations/event/list/${teamid}`, body, config)
+    .get(`${proxy}/api/organizations/event/list/${teamid}`, body, config)
     .then((res) => {
       dispatch({ type: EVENT_LIST_LOADED, payload: res.data });
     })
@@ -85,7 +88,7 @@ export const updateEventLiveStreamLink =
     const body = JSON.stringify({ link });
     axios
       .put(
-        `/api/organizations/update/event/stream/link/${orgid}/${teamid}/${eventid}`,
+        `${proxy}/api/organizations/update/event/stream/link/${orgid}/${teamid}/${eventid}`,
         body,
         config
       )
@@ -110,7 +113,7 @@ export const getEventAttendingUserList =
     // Headers
     axios
       .get(
-        `/api/organizations/event/attending/users/${orgid}/${teamid}/${eventid}`
+        `${proxy}/api/organizations/event/attending/users/${orgid}/${teamid}/${eventid}`
       )
       .then((res) => {
         dispatch({ type: ORGANIZATION_UPDATED, payload: res.data });

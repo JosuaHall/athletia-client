@@ -8,6 +8,7 @@ import {
   FILTER_FOR_EVENTS_UPDATED,
 } from "./types";
 import axios from "axios";
+import { proxy } from "../../package.json";
 
 export const createOrganization =
   ({ user, logo, name }) =>
@@ -22,7 +23,7 @@ export const createOrganization =
     formData.append("name", name);
 
     axios
-      .post(`/api/organizations/create/${user}`, formData)
+      .post(`${proxy}/api/organizations/create/${user}`, formData)
       .then((res) => {
         dispatch({ type: ORGANIZATION_CREATED, payload: res.data });
       })
@@ -33,7 +34,7 @@ export const createOrganization =
 
 export const getOrganizationList = (id) => (dispatch) => {
   axios
-    .get(`/api/organizations/list/${id}`)
+    .get(`${proxy}/api/organizations/list/${id}`)
     .then((res) => {
       dispatch({ type: ORGANIZATION_LIST_LOADED, payload: res.data });
     })
@@ -48,7 +49,7 @@ export const setCurrentOrganization = (id) => (dispatch) => {
 
 export const getOrganization = (organizationid) => (dispatch) => {
   axios
-    .get(`/api/organizations/organization/${organizationid}`)
+    .get(`${proxy}/api/organizations/organization/${organizationid}`)
     .then((res) => {
       dispatch({ type: ORGANIZATION_LOADED, payload: res.data });
     })
@@ -59,7 +60,7 @@ export const getOrganization = (organizationid) => (dispatch) => {
 
 export const getAllOrganizations = () => (dispatch) => {
   axios
-    .get(`/api/organizations/get/all`)
+    .get(`${proxy}/api/organizations/get/all`)
     .then((res) => {
       dispatch({ type: ALL_ORGANIZATION_LIST_LOADED, payload: res.data });
     })
@@ -71,7 +72,7 @@ export const getAllOrganizations = () => (dispatch) => {
 export const attendEvent = (orgid, teamid, eventid, userid) => (dispatch) => {
   axios
     .put(
-      `/api/organizations/event/attend/${orgid}/${teamid}/${eventid}/${userid}`
+      `${proxy}/api/organizations/event/attend/${orgid}/${teamid}/${eventid}/${userid}`
     )
     .then((res) => {
       dispatch({ type: ORGANIZATION_UPDATED, payload: res.data });
@@ -84,7 +85,7 @@ export const attendEvent = (orgid, teamid, eventid, userid) => (dispatch) => {
 export const unattendEvent = (orgid, teamid, eventid, userid) => (dispatch) => {
   axios
     .put(
-      `/api/organizations/event/unattend/${orgid}/${teamid}/${eventid}/${userid}`
+      `${proxy}/api/organizations/event/unattend/${orgid}/${teamid}/${eventid}/${userid}`
     )
     .then((res) => {
       dispatch({ type: ORGANIZATION_UPDATED, payload: res.data });

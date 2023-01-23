@@ -8,6 +8,7 @@ import {
   SPORTS_LOADED,
 } from "./types";
 import axios from "axios";
+import { proxy } from "../../package.json";
 
 export const createTeam =
   ({ userid, organizationid, sport, admin }) =>
@@ -23,7 +24,7 @@ export const createTeam =
 
     axios
       .put(
-        `/api/organizations/create/team/${userid}/${organizationid}`,
+        `${proxy}/api/organizations/create/team/${userid}/${organizationid}`,
         body,
         config
       )
@@ -39,7 +40,7 @@ export const deleteTeam =
   ({ org, id }) =>
   (dispatch) => {
     axios
-      .put(`/api/organizations/delete/team/${id}/${org}`)
+      .put(`${proxy}/api/organizations/delete/team/${id}/${org}`)
       .then((res) => {
         dispatch({ type: TEAM_DELETED, payload: res.data });
       })
@@ -53,12 +54,12 @@ export const setCurrentTeam = (id) => (dispatch) => {
 };
 
 export const getTeamList = (userid, organizationid) => (dispatch) => {
-  axios.get(`/api/organizations/organization/teams`);
+  axios.get(`${proxy}/api/organizations/organization/teams`);
 };
 
 export const getSports = () => (dispatch) => {
   axios
-    .get(`/api/organizations/get/sports`)
+    .get(`${proxy}/api/organizations/get/sports`)
     .then((res) => {
       dispatch({ type: SPORTS_LOADED, payload: res.data });
     })
@@ -86,7 +87,7 @@ export const sendTeamAdminRequest =
 
     axios
       .post(
-        `/api/organizations/send/team/admin/request/${request_by_user}/${user_recipient}`,
+        `${proxy}/api/organizations/send/team/admin/request/${request_by_user}/${user_recipient}`,
         body,
         config
       )
@@ -101,7 +102,7 @@ export const sendTeamAdminRequest =
 export const getTeamAdminRequests = (request_by_user, team) => (dispatch) => {
   axios
     .get(
-      `/api/organizations/get/team/admin/requests/${request_by_user}/${team}`
+      `${proxy}/api/organizations/get/team/admin/requests/${request_by_user}/${team}`
     )
     .then((res) => {
       dispatch({ type: TEAM_ADMIN_REQUESTS_LOADED, payload: res.data });
@@ -113,7 +114,9 @@ export const getTeamAdminRequests = (request_by_user, team) => (dispatch) => {
 
 export const loadTeamAdminRequests = (user_recipient) => (dispatch) => {
   axios
-    .get(`/api/organizations/load/team/admin/requests/${user_recipient}`)
+    .get(
+      `${proxy}/api/organizations/load/team/admin/requests/${user_recipient}`
+    )
     .then((res) => {
       dispatch({ type: TEAM_ADMIN_REQUESTS_LOADED, payload: res.data });
     })
@@ -124,7 +127,7 @@ export const loadTeamAdminRequests = (user_recipient) => (dispatch) => {
 
 export const acceptRequest = (id) => (dispatch) => {
   axios
-    .put(`/api/organizations/accept/request/${id}`)
+    .put(`${proxy}/api/organizations/accept/request/${id}`)
     .then((res) => {
       dispatch({ type: TEAM_ADMIN_REQUEST_UPDATED, payload: res.data });
     })
@@ -135,7 +138,7 @@ export const acceptRequest = (id) => (dispatch) => {
 
 export const deleteTeamAdminRequestEntry = (id) => (dispatch) => {
   axios
-    .delete(`/api/organizations/delete/team/admin/request/entry/${id}`)
+    .delete(`${proxy}/api/organizations/delete/team/admin/request/entry/${id}`)
     .then((res) => {
       dispatch({ type: TEAM_ADMIN_REQUEST_UPDATED, payload: res.data });
     })

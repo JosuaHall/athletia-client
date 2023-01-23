@@ -1,5 +1,6 @@
 import axios from "axios";
 import { returnErrors, clearErrors } from "./errorActions";
+import { proxy } from "../../package.json";
 
 import {
   USER_LOADED,
@@ -27,7 +28,7 @@ export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
 
   axios
-    .get("/api/auth/user", tokenConfig(getState))
+    .get(`${proxy}/api/auth/user`, tokenConfig(getState))
     .then((res) =>
       dispatch({
         type: USER_LOADED,
@@ -48,7 +49,10 @@ export const updateProfilePicture =
     formData.append("userid", userid);
     formData.append("profileImg", logo);
     axios
-      .put(`/api/organizations/updateProfilePicture/${userid}`, formData)
+      .put(
+        `${proxy}/api/organizations/updateProfilePicture/${userid}`,
+        formData
+      )
       .then((res) => {
         dispatch({ type: PROFILE_PICTURE_UPDATED, payload: res.data });
       })
@@ -72,7 +76,7 @@ export const register =
     const body = JSON.stringify({ name, email, password });
 
     axios
-      .post("/api/users", body, config)
+      .post(`${proxy}/api/users`, body, config)
       .then((res) => {
         dispatch(clearErrors());
         dispatch({
@@ -105,7 +109,7 @@ export const login =
     const body = JSON.stringify({ email, password });
 
     axios
-      .post("/api/auth", body, config)
+      .post(`${proxy}/api/auth`, body, config)
       .then((res) => {
         dispatch(clearErrors());
         dispatch({
@@ -160,7 +164,11 @@ export const followTeam = (userid, orgid, teamid) => (dispatch) => {
   const body = JSON.stringify({ orgid, teamid });
 
   axios
-    .put(`/api/users/follow/team/${userid}/${orgid}/${teamid}`, body, config)
+    .put(
+      `${proxy}/api/users/follow/team/${userid}/${orgid}/${teamid}`,
+      body,
+      config
+    )
     .then((res) => {
       dispatch({ type: TEAM_FOLLOWED, payload: res.data });
     })
@@ -179,7 +187,11 @@ export const unfollowTeam = (userid, orgid, teamid) => (dispatch) => {
   const body = JSON.stringify({ orgid, teamid });
 
   axios
-    .put(`/api/users/unfollow/team/${userid}/${orgid}/${teamid}`, body, config)
+    .put(
+      `${proxy}/api/users/unfollow/team/${userid}/${orgid}/${teamid}`,
+      body,
+      config
+    )
     .then((res) => {
       dispatch({ type: TEAM_UNFOLLOWED, payload: res.data });
     })
@@ -213,7 +225,7 @@ export const selectFollowedOrganization = (organization) => (dispatch) => {
 
 export const getFilteredUsers = (search_string) => (dispatch) => {
   axios
-    .get(`/api/users/get/filtered/users`, {
+    .get(`${proxy}/api/users/get/filtered/users`, {
       params: { name: search_string },
     })
     .then((res) => {

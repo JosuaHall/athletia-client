@@ -66,7 +66,7 @@ class Profile extends Component {
                     src={
                       this.state.url
                         ? this.state.url
-                        : `${proxy}public/${this.props.user.user.profileImg}`
+                        : `${proxy}/public/${this.props.user.user.profileImg}`
                     }
                     onMouseOver={this.handleMouseOver}
                     onMouseOut={this.handleMouseOut}
@@ -117,7 +117,7 @@ class Profile extends Component {
               <React.Component key={org._id}>
                 <div className="">
                   <div>
-                    <img src={`${proxy}public/${org.logo}`} alt="" />
+                    <img src={`${proxy}/public/${org.logo}`} alt="" />
                   </div>
                   <div>{org.name}</div>
                 </div>

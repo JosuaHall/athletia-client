@@ -35,7 +35,7 @@ class TeamDetails extends Component {
             <div className="d-inline-flex gap-3 mb-4 justify-content-center align-items-center">
               <img
                 className="organization-logo"
-                src={`${proxy}public/${this.props.organization.selected.logo}`}
+                src={`${proxy}/public/${this.props.organization.selected.logo}`}
                 alt=""
               />
               <h2>{this.props.organization.selected.name}</h2>

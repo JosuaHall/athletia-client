@@ -43,7 +43,7 @@ class SchoolList extends Component {
           >
             <img
               className="organization-logo"
-              src={`${proxy}public/${organization.logo}`}
+              src={`${proxy}/public/${organization.logo}`}
               alt=""
             />
             <div>{organization.name}</div>

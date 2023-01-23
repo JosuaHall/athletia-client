@@ -148,7 +148,7 @@ class Slider extends Component {
                 )}
                 <img
                   className="organization-logo"
-                  src={`${proxy}public/${this.props.organization.allOrganizations
+                  src={`${proxy}/public/${this.props.organization.allOrganizations
                     .filter((org) => {
                       return org.name == event.opponent;
                     })
@@ -189,7 +189,7 @@ class Slider extends Component {
                   <div className="event-going-list" key={user._id}>
                     <img
                       className="organization-logo"
-                      src={`${proxy}public/${
+                      src={`${proxy}/public/${
                         user.profileImg ? user.profileImg : ""
                       }`}
                       alt="..."

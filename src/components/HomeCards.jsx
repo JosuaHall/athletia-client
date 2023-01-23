@@ -157,7 +157,7 @@ class HomeCards extends Component {
                 <div>
                   <img
                     className="organization-logo"
-                    src={`${proxy}public/${
+                    src={`${proxy}/public/${
                       first_followed_org ? first_followed_org.logo : ""
                     }`}
                     alt=""

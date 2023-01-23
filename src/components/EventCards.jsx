@@ -70,7 +70,7 @@ class EventCards extends Component {
           <div className="d-flex">
             <img
               className="organization-logo"
-              src={`${proxy}public/${this.props.organization.selected.logo}`}
+              src={`${proxy}/public/${this.props.organization.selected.logo}`}
               alt=""
             />
             <div className="organization-team-header-homepage px-2">

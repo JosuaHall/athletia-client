@@ -117,7 +117,7 @@ class HomeSlider extends Component {
                     <div key={user._id}>
                       <img
                         className="profileImg-attending"
-                        src={`${proxy}public/${
+                        src={`${proxy}/public/${
                           user.profileImg ? user.profileImg : ""
                         }`}
                         alt=""
@@ -189,7 +189,7 @@ class HomeSlider extends Component {
 
                     <img
                       className="organization-logo"
-                      src={`${proxy}public/${this.props.organization.allOrganizations
+                      src={`${proxy}/public/${this.props.organization.allOrganizations
                         .filter((org) => {
                           return org.name == event.opponent;
                         })
@@ -239,7 +239,7 @@ class HomeSlider extends Component {
                       <div key={user._id}>
                         <img
                           className="profileImg-attending"
-                          src={`${proxy}public/${
+                          src={`${proxy}/public/${
                             user.profileImg ? user.profileImg : ""
                           }`}
                           alt=""
@@ -316,7 +316,7 @@ class HomeSlider extends Component {
                       )}
                       <img
                         className="organization-logo"
-                        src={`${proxy}public/${this.props.organization.allOrganizations
+                        src={`${proxy}/public/${this.props.organization.allOrganizations
                           .filter((org) => {
                             return org.name == event.opponent;
                           })
@@ -366,7 +366,7 @@ class HomeSlider extends Component {
                       <div key={user._id}>
                         <img
                           className="profileImg-attending"
-                          src={`${proxy}public/${
+                          src={`${proxy}/public/${
                             user.profileImg ? user.profileImg : ""
                           }`}
                           alt=""
@@ -443,7 +443,7 @@ class HomeSlider extends Component {
                       )}
                       <img
                         className="organization-logo"
-                        src={`${proxy}public/${this.props.organization.allOrganizations
+                        src={`${proxy}/public/${this.props.organization.allOrganizations
                           .filter((org) => {
                             return org.name == event.opponent;
                           })
@@ -516,7 +516,7 @@ class HomeSlider extends Component {
                             <div>
                               <img
                                 className="organization-logo"
-                                src={`${proxy}public/${
+                                src={`${proxy}/public/${
                                   user.profileImg ? user.profileImg : ""
                                 }`}
                                 alt="..."
@@ -536,7 +536,7 @@ class HomeSlider extends Component {
                           <div>
                             <img
                               className="organization-logo"
-                              src={`${proxy}public/${
+                              src={`${proxy}/public/${
                                 user.profileImg ? user.profileImg : ""
                               }`}
                               alt="..."

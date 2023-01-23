@@ -60,7 +60,7 @@ class YourTeams extends Component {
               <div key={r._id} className="your-team-item mb-2">
                 <div className="your-team-item-left">
                   <img
-                    src={`${proxy}public/${
+                    src={`${proxy}/public/${
                       r.organization.logo ? r.organization.logo : ""
                     }`}
                     alt=""
@@ -97,7 +97,7 @@ class YourTeams extends Component {
             .map((r) => (
               <div key={r._id} className="your-team-item">
                 <div className="your-team-item-left">
-                  <img src={`${proxy}public/${r.organization.logo}`} alt="" />
+                  <img src={`${proxy}/public/${r.organization.logo}`} alt="" />
                   <div className="d-flex">
                     <div className="mx-1">
                       <strong>{r.organization.name}</strong>

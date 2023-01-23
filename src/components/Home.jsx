@@ -96,7 +96,7 @@ class Home extends Component {
                       <div>
                         <img
                           className="search-field-logo"
-                          src={`${proxy}public/${org.logo}`}
+                          src={`${proxy}/public/${org.logo}`}
                           alt=""
                         />
                       </div>
@@ -130,7 +130,7 @@ class Home extends Component {
                       >
                         <img
                           className="search-field-logo"
-                          src={`${proxy}public/${this.state.selectedOrg.logo}`}
+                          src={`${proxy}/public/${this.state.selectedOrg.logo}`}
                           alt=""
                         />
                         <div>{team.sport}</div>

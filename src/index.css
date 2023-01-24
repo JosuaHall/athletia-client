@@ -1354,6 +1354,8 @@ user-select: none;
     margin: 0;
     padding: 0em 1em;
     background-color: #082b4d;
+    align-items: center;
+    justify-content: space-between !important;
     flex-wrap: nowrap !important;
     justify-content: flex-start;
   }
@@ -1402,7 +1404,7 @@ user-select: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color:  #212529;
+    background-color:  #082b4d;
     color: white;
     height: inherit !important;
     padding: 2em 1em;
@@ -1537,10 +1539,21 @@ user-select: none;
     margin-bottom: 1em;
   }
 
+
+
 }
 
 @media only screen and (max-width: 1024px) {
   .App {
     width: 90%;
   }
+
+  .alice-carousel__prev-btn,
+.alice-carousel__next-btn {
+    position: absolute;
+    top: 30%;
+    width: 50px;
+    font-size: 0px;
+    color: transparent;
+}
 }

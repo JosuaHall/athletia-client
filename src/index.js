@@ -15,7 +15,7 @@ import store, { persistor } from "./store";
 import { PersistGate } from "redux-persist/integration/react";
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 
-if (process.env.NODE_ENV === "production") disableReactDevTools();
+//if (process.env.NODE_ENV === "production") disableReactDevTools();
 
 library.add(fab, fas);
 

@@ -82,11 +82,11 @@ class HomeSlider extends Component {
     const items = [];
     let filtered_teams = this.props.organization.selectedOption;
     let any_org = this.state.any_org; //any followed organization: usually the first object
-    let teams = any_org.teams;
-    if (filtered_teams != undefined && teams != undefined) {
-      teams = teams.filter((t) => filtered_teams.includes(t._id));
+    let teams = any_org != [] ? any_org.teams : null;
+    if (teams != null) {
+      if (filtered_teams != [])
+        teams = teams.filter((t) => filtered_teams.includes(t._id));
     }
-
     if (any_org && any_org.teams) {
       teams.map((team) => {
         if (

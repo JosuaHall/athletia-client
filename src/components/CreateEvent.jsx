@@ -80,12 +80,10 @@ class CreateEvent extends Component {
   };
 
   handleShow = (e) => {
-    e.preventDefault();
     this.setState({ isOpen: true });
   };
 
   handleClose = (e) => {
-    e.preventDefault();
     this.setState({ isOpen: false });
   };
 
@@ -146,7 +144,11 @@ class CreateEvent extends Component {
               </option>
               {org
                 ? org.map((orga) => {
-                    return <option value={orga.name}>{orga.name}</option>;
+                    return (
+                      <option key={orga._id} value={orga.name}>
+                        {orga.name}
+                      </option>
+                    );
                   })
                 : ""}
             </select>
@@ -202,17 +204,19 @@ class CreateEvent extends Component {
                   </Button>
                 </form>
 
-                {this.props.event.amenities.map((item, index) => (
-                  <div className="ameniti-item" key={index}>
-                    <Button
-                      className="btn btn-danger"
-                      onClick={() => this.removeItem(index)}
-                    >
-                      x
-                    </Button>
-                    <div>{item}</div>
-                  </div>
-                ))}
+                {this.props.event.amenities
+                  ? this.props.event.amenities.map((item, index) => (
+                      <div className="ameniti-item" key={index}>
+                        <Button
+                          className="btn btn-danger"
+                          onClick={() => this.removeItem(index)}
+                        >
+                          x
+                        </Button>
+                        <div>{item}</div>
+                      </div>
+                    ))
+                  : ""}
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="primary" onClick={this.handleClose}>

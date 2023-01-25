@@ -117,7 +117,7 @@ class EventList extends Component {
                   <div>{event.home_away}</div>
                   <div>
                     {event.amenities.slice(0, 2).map((i) => (
-                      <div>{i}</div>
+                      <div key={i}>{i}</div>
                     ))}
                   </div>
                   <div

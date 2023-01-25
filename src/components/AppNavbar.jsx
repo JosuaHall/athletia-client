@@ -1,17 +1,5 @@
 import React, { Component } from "react";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavbarText,
-  NavItem,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from "reactstrap";
+import { NavbarText, DropdownItem } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Logout from "./auth/Logout";
@@ -37,11 +25,20 @@ class AppNavbar extends Component {
     this.setState({ isOpen: false });
   }
 
+  componentWillUnmount() {
+    this.setState({ isOpen: false });
+  }
+
   //toggle option field in navbar
-  toggle = () => {
+  toggle = (e) => {
     this.setState({
       isOpen: !this.state.isOpen,
     });
+  };
+
+  logUserOut = () => {
+    this.toggle();
+    this.props.logout();
   };
 
   render() {
@@ -65,35 +62,35 @@ class AppNavbar extends Component {
                 to={`/events/${user ? user._id : ""}`}
                 className="link-dropdown"
               >
-                <DropdownItem>Athletia Home</DropdownItem>
+                <div className="py-2 px-3">Athletia Home</div>
               </Link>
               <Link
                 onClick={this.toggle}
                 to={`/setup/school/${user ? user._id : ""}`}
                 className="link-dropdown"
               >
-                <DropdownItem>Organization Setup</DropdownItem>
+                <div className="py-2 px-3">Organization Setup</div>
               </Link>
               <Link
                 onClick={this.toggle}
                 to={`/profile/settings/${user ? user._id : ""}`}
                 className="link-dropdown"
               >
-                <DropdownItem>Edit Profile</DropdownItem>
+                <div className="py-2 px-3">Edit Profile</div>
               </Link>
               <Link
                 onClick={this.toggle}
                 to={`/your/teams/${user ? user._id : ""}`}
                 className="link-dropdown"
               >
-                <DropdownItem>Your Teams</DropdownItem>
+                <div className="py-2 px-3">Your Teams</div>
               </Link>
               <Link
-                onClick={this.toggle && this.props.logout}
+                onClick={this.logUserOut}
                 to="/login"
                 className="link-dropdown"
               >
-                <DropdownItem>Logout</DropdownItem>
+                <div className="py-2 px-3">Logout</div>
               </Link>
             </div>
           ) : (

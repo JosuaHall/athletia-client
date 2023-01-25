@@ -77,7 +77,7 @@ class Home extends Component {
               className="search-input"
               onChange={this.onChange}
               type="text"
-              autocomplete="off"
+              autoComplete="off"
             />
           </div>
 
@@ -89,7 +89,7 @@ class Home extends Component {
                     org // display found organizations
                   ) => (
                     <li
-                      key={org.name}
+                      key={org._id}
                       className="search-field-option"
                       onClick={() => this.selectOrg(org)}
                     >
@@ -122,6 +122,7 @@ class Home extends Component {
                       team //display teams list links from selectedOrg in state: link clicked? -> render EventCards
                     ) => (
                       <Link
+                        key={team._id}
                         onClick={() => {
                           this.props.setCurrentTeam(team); //set redux state: team.selected_team to team object
                         }}
@@ -140,12 +141,12 @@ class Home extends Component {
                 : ""}
             </div>
           </div>
-        ) : this.props.user.user.teams_followed == "" ? ( //check if user follows any teams? redux: auth.user.teams_followed
+        ) : this.props.user.user.organizations_followed == "" ? ( //check if user follows any teams? redux: auth.user.teams_followed
           <div className="no-teams-followed-homepage">
             <div>
               <FontAwesomeIcon icon={["fa", "user"]} size="1x" />
             </div>
-            <div>You are currently not following any teams</div>
+            <div>You are currently not following any organizations</div>
           </div>
         ) : this.props.organization.allOrganizations != "" ? (
           <HomeCards /> //if user follows teams -> display HomeCards

@@ -74,7 +74,7 @@ export default function (state = initialState, action) {
     case PROFILE_PICTURE_UPDATED:
       return {
         ...state,
-        ...action.payload,
+        user: action.payload,
       };
     case TEAM_FOLLOWED:
       return {

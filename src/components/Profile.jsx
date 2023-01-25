@@ -25,14 +25,20 @@ class Profile extends Component {
     this.setState({ logo: this.props.user.user.profileImg });
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.user.user.profileImg !== this.props.user.user.profileImg) {
+      this.setState({ logo: this.props.user.user.profileImg });
+      this.setState({ url: "" });
+    }
+  }
+
   onFileChange = (e) => {
     this.setState({ logo: e.target.files[0] });
     if (e.target.files[0])
       this.setState({ url: URL.createObjectURL(e.target.files[0]) });
   };
 
-  submit = (e) => {
-    e.preventDefault();
+  submit = () => {
     const { logo } = this.state;
     const userid = this.props.user.user._id;
     const user = {
@@ -52,15 +58,17 @@ class Profile extends Component {
   };
 
   render() {
-    const followed_org = this.props.user.user.organizations_followed;
-    const followed_org_nr = followed_org.length;
+    const followed_org = this.props.user.user.organizations_followed
+      ? this.props.user.user.organizations_followed
+      : null;
+    const followed_org_nr = followed_org ? followed_org.length : 0;
     return (
       <div className="profile">
         <div className="profile-header">
           <div className="upload-logo">
             {this.state.logo ? (
               <div className="input-pb">
-                <label className="hover-text" for="inputTag">
+                <label className="hover-text" htmlFor="inputTag">
                   <img
                     className="hover-text"
                     src={
@@ -85,7 +93,10 @@ class Profile extends Component {
               </div>
             ) : (
               <div>
-                <label for="inputTag" className="label-style-profile-picture">
+                <label
+                  htmlFor="inputTag"
+                  className="label-style-profile-picture"
+                >
                   <FontAwesomeIcon icon={["fa", "camera"]} size="2x" />
                   <input
                     type="file"

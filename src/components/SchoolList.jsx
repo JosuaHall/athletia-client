@@ -26,12 +26,25 @@ class SchoolList extends Component {
     this.props.getOrganizationList(id);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    const id = this.props.user.user._id;
+    if (
+      prevProps.organization.organization_list !=
+      this.props.organization.organization_list
+    ) {
+      this.props.getOrganizationList(id);
+      this.setState({
+        organization_list: this.props.organization.organization_list,
+      });
+    }
+  }
+
   setCurrentOrganization = (id) => {
     this.props.setCurrentOrganization(id);
   };
 
   displayOrganizations() {
-    const organizations = this.props.organization.organization_list;
+    const organizations = this.state.organization_list;
     return (
       <ul className="organization-list">
         {organizations.map((organization) => (

@@ -52,8 +52,9 @@ class HomeCards extends Component {
       teams_followed_list: followed_teams,
       org_followed_list: organizations_followed,
     });
-    const first = organizations_followed[0]; //set the first organization as selected
-    this.props.getOrganization(first._id); //getOrganization sets the first followed organization
+    const first = organizations_followed ? organizations_followed[0] : []; //set the first organization as selected
+
+    if (first) this.props.getOrganization(first._id); //getOrganization sets the first followed organization
     this.setState({ org_filtered: first });
 
     this.props.setTeamsFollowed(followed_teams);
@@ -68,9 +69,11 @@ class HomeCards extends Component {
       //const userid = this.props.user.user._id;
       this.props.setCurrentOrganization(this.state.org_filtered);
       this.setState({ org_filtered: this.state.org_filtered });
-      const orgid = this.state.org_filtered._id;
+      if (this.state.org_filtered != null) {
+        const orgid = this.state.org_filtered._id;
 
-      this.props.getOrganization(orgid); //sets the selected organization in redux > organization > selected
+        this.props.getOrganization(orgid); //sets the selected organization in redux > organization > selected
+      }
     }
 
     if (prevState.followed != this.state.followed) {
@@ -96,6 +99,7 @@ class HomeCards extends Component {
             return e.value;
           })
         : "";
+
       const filter = {
         home: this.state.homeCheckbox,
         away: this.state.awayCheckbox,
@@ -136,7 +140,7 @@ class HomeCards extends Component {
     //const org = this.props.organization.selected;
 
     /* teams options */
-    const options = this.state.org_filtered.teams;
+    const options = first_followed_org != null ? first_followed_org.teams : [];
     var teams = options
       ? options.map((e) => {
           return {

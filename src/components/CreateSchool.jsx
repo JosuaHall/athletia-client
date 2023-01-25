@@ -13,7 +13,6 @@ class CreateSchool extends Component {
     logo: "",
     url: "",
     name: "",
-    admin_email: "",
   };
 
   static propTypes = {
@@ -45,15 +44,15 @@ class CreateSchool extends Component {
     };
 
     this.props.createOrganization(organization);
-    this.updateOrg(user);
+    this.props.getOrganizationList(user);
     this.setState({ logo: "" });
     this.setState({ url: "" });
     this.setState({ name: "" });
   };
 
-  updateOrg = (user) => {
+  /*updateOrg = (user) => {
     this.props.getOrganizationList(user);
-  };
+  };*/
 
   render() {
     return (

@@ -57,7 +57,7 @@ class CreateTeam extends Component {
             </option>
             {this.props.team.all_sports
               ? this.props.team.all_sports.map((s) => (
-                  <React.Fragment>
+                  <React.Fragment key={s._id}>
                     <option key={`${s._id}1`} value={`Men's ${s.sport}`}>
                       Men's {s.sport}
                     </option>

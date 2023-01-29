@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Slider from "./Slider";
 import BackButton from "./BackButton";
-import { proxy } from "../../package.json";
 
 import {
   followTeam,
@@ -70,7 +69,7 @@ class EventCards extends Component {
           <div className="d-flex">
             <img
               className="organization-logo"
-              src={`${proxy}/public/${this.props.organization.selected.logo}`}
+              src={`${this.props.organization.selected.logo}`}
               alt=""
             />
             <div className="organization-team-header-homepage px-2">

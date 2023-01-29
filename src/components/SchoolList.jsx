@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { proxy } from "../../package.json";
+
 import {
   getOrganizationList,
   setCurrentOrganization,
@@ -56,7 +56,7 @@ class SchoolList extends Component {
           >
             <img
               className="organization-logo"
-              src={`${proxy}/public/${organization.logo}`}
+              src={`${organization.logo}`}
               alt=""
             />
             <div>{organization.name}</div>

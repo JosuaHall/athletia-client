@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { proxy } from "../../package.json";
+
 import {
   attendEvent,
   unattendEvent,
@@ -114,15 +114,19 @@ class HomeSlider extends Component {
                 >
                   {/* show only the first 3 users that attend an event */}
                   {event.people_attending.slice(0, 3).map((user) => (
-                    <div key={user._id}>
-                      <img
-                        className="profileImg-attending"
-                        src={`${proxy}/public/${
-                          user.profileImg ? user.profileImg : ""
-                        }`}
-                        alt=""
-                      />
-                    </div>
+                    <React.Fragment key={user._id}>
+                      {user.profileImg ? (
+                        <img
+                          className="profileImg-attending"
+                          src={`${user.profileImg ? user.profileImg : ""}`}
+                          alt=""
+                        />
+                      ) : (
+                        <div className="no-profileImg-logo-home">
+                          <FontAwesomeIcon icon={["fa", "user"]} />
+                        </div>
+                      )}
+                    </React.Fragment>
                   ))}
                   <div>...</div>
                 </div>
@@ -189,7 +193,7 @@ class HomeSlider extends Component {
 
                     <img
                       className="organization-logo"
-                      src={`${proxy}/public/${this.props.organization.allOrganizations
+                      src={`${this.props.organization.allOrganizations
                         .filter((org) => {
                           return org.name == event.opponent;
                         })
@@ -236,15 +240,19 @@ class HomeSlider extends Component {
                   >
                     {/* show only the first 3 users that attend an event */}
                     {event.people_attending.slice(0, 3).map((user) => (
-                      <div key={user._id}>
-                        <img
-                          className="profileImg-attending"
-                          src={`${proxy}/public/${
-                            user.profileImg ? user.profileImg : ""
-                          }`}
-                          alt=""
-                        />
-                      </div>
+                      <React.Fragment key={user._id}>
+                        {user.profileImg ? (
+                          <img
+                            className="profileImg-attending"
+                            src={`${user.profileImg ? user.profileImg : ""}`}
+                            alt=""
+                          />
+                        ) : (
+                          <div className="no-profileImg-logo-home">
+                            <FontAwesomeIcon icon={["fa", "user"]} />
+                          </div>
+                        )}
+                      </React.Fragment>
                     ))}
                     <div>...</div>
                   </div>
@@ -316,7 +324,7 @@ class HomeSlider extends Component {
                       )}
                       <img
                         className="organization-logo"
-                        src={`${proxy}/public/${this.props.organization.allOrganizations
+                        src={`${this.props.organization.allOrganizations
                           .filter((org) => {
                             return org.name == event.opponent;
                           })
@@ -363,15 +371,19 @@ class HomeSlider extends Component {
                   >
                     {/* show only the first 3 users that attend an event */}
                     {event.people_attending.slice(0, 3).map((user) => (
-                      <div key={user._id}>
-                        <img
-                          className="profileImg-attending"
-                          src={`${proxy}/public/${
-                            user.profileImg ? user.profileImg : ""
-                          }`}
-                          alt=""
-                        />
-                      </div>
+                      <React.Fragment key={user._id}>
+                        {user.profileImg ? (
+                          <img
+                            className="profileImg-attending"
+                            src={`${user.profileImg ? user.profileImg : ""}`}
+                            alt=""
+                          />
+                        ) : (
+                          <div className="no-profileImg-logo-home">
+                            <FontAwesomeIcon icon={["fa", "user"]} />
+                          </div>
+                        )}
+                      </React.Fragment>
                     ))}
                     <div>...</div>
                   </div>
@@ -443,7 +455,7 @@ class HomeSlider extends Component {
                       )}
                       <img
                         className="organization-logo"
-                        src={`${proxy}/public/${this.props.organization.allOrganizations
+                        src={`${this.props.organization.allOrganizations
                           .filter((org) => {
                             return org.name == event.opponent;
                           })
@@ -514,15 +526,20 @@ class HomeSlider extends Component {
                         <div className="event-going-list">
                           <div className="people-going">
                             <div>
-                              <img
-                                className="organization-logo"
-                                src={`${proxy}/public/${
-                                  user.profileImg ? user.profileImg : ""
-                                }`}
-                                alt="..."
-                              />
+                              {user.profileImg ? (
+                                <img
+                                  className="organization-logo"
+                                  src={`${
+                                    user.profileImg ? user.profileImg : ""
+                                  }`}
+                                  alt=""
+                                />
+                              ) : (
+                                <div className="no-profileImg-logo-home">
+                                  <FontAwesomeIcon icon={["fa", "user"]} />
+                                </div>
+                              )}
                             </div>
-
                             <div>{user.name}</div>
                           </div>
                         </div>
@@ -534,13 +551,19 @@ class HomeSlider extends Component {
                       <div className="event-going-list">
                         <div className="people-going">
                           <div>
-                            <img
-                              className="organization-logo"
-                              src={`${proxy}/public/${
-                                user.profileImg ? user.profileImg : ""
-                              }`}
-                              alt="..."
-                            />
+                            {user.profileImg ? (
+                              <img
+                                className="organization-logo"
+                                src={`${
+                                  user.profileImg ? user.profileImg : ""
+                                }`}
+                                alt=""
+                              />
+                            ) : (
+                              <div className="no-profileImg-logo">
+                                <FontAwesomeIcon icon={["fa", "user"]} />
+                              </div>
+                            )}
                           </div>
 
                           <div>{user.name}</div>

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { proxy } from "../../package.json";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getOrganization } from "../actions/organizationActions";
@@ -7,7 +6,6 @@ import TeamList from "./TeamList";
 import LoadingSpinner from "./LoadingSpinner";
 import CreateTeam from "./CreateTeam";
 import BackButton from "./BackButton";
-import { setCurrentOrganization } from "./../actions/organizationActions";
 
 class TeamDetails extends Component {
   state = {};
@@ -35,7 +33,7 @@ class TeamDetails extends Component {
             <div className="d-inline-flex gap-3 mb-4 justify-content-center align-items-center">
               <img
                 className="organization-logo"
-                src={`${proxy}/public/${this.props.organization.selected.logo}`}
+                src={`${this.props.organization.selected.logo}`}
                 alt=""
               />
               <h2>{this.props.organization.selected.name}</h2>

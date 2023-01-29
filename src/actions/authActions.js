@@ -48,10 +48,16 @@ export const updateProfilePicture =
     const formData = new FormData();
     formData.append("userid", userid);
     formData.append("profileImg", logo);
+
+    const config = {
+      headers: { "content-type": "multipart/form-data" },
+    };
+
     axios
       .put(
         `${proxy}/api/organizations/updateProfilePicture/${userid}`,
-        formData
+        formData,
+        config
       )
       .then((res) => {
         dispatch({ type: PROFILE_PICTURE_UPDATED, payload: res.data });

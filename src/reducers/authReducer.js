@@ -74,7 +74,10 @@ export default function (state = initialState, action) {
     case PROFILE_PICTURE_UPDATED:
       return {
         ...state,
-        user: action.payload,
+        user: {
+          ...state.user,
+          profileImg: action.payload.profileImg,
+        },
       };
     case TEAM_FOLLOWED:
       return {

@@ -27,7 +27,17 @@ class CreateSchool extends Component {
   };
 
   onFileChange = (e) => {
-    this.setState({ logo: e.target.files[0] });
+    const file = e.target.files[0];
+    this.getBase64(file)
+      .then((result) => {
+        file["base64"] = result;
+        this.setState({
+          logo: file,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     if (e.target.files[0])
       this.setState({ url: URL.createObjectURL(e.target.files[0]) });
   };
@@ -48,6 +58,24 @@ class CreateSchool extends Component {
     this.setState({ logo: "" });
     this.setState({ url: "" });
     this.setState({ name: "" });
+  };
+
+  getBase64 = (file) => {
+    return new Promise((resolve) => {
+      let baseURL = "";
+      // Make new FileReader
+      let reader = new FileReader();
+
+      // Convert the file to base64 text
+      reader.readAsDataURL(file);
+
+      // on reader load somthing...
+      reader.onload = () => {
+        // Make a fileInfo Object
+        baseURL = reader.result;
+        resolve(baseURL);
+      };
+    });
   };
 
   /*updateOrg = (user) => {

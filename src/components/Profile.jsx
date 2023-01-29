@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { updateProfilePicture } from "../actions/authActions";
-import { proxy } from "../../package.json";
 
 class Profile extends Component {
   state = {
@@ -33,14 +32,44 @@ class Profile extends Component {
   }
 
   onFileChange = (e) => {
-    this.setState({ logo: e.target.files[0] });
+    const file = e.target.files[0];
+    this.getBase64(file)
+      .then((result) => {
+        file["base64"] = result;
+        this.setState({
+          logo: file,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
     if (e.target.files[0])
       this.setState({ url: URL.createObjectURL(e.target.files[0]) });
+  };
+
+  getBase64 = (file) => {
+    return new Promise((resolve) => {
+      let baseURL = "";
+      // Make new FileReader
+      let reader = new FileReader();
+
+      // Convert the file to base64 text
+      reader.readAsDataURL(file);
+
+      // on reader load somthing...
+      reader.onload = () => {
+        // Make a fileInfo Object
+        baseURL = reader.result;
+        resolve(baseURL);
+      };
+    });
   };
 
   submit = () => {
     const { logo } = this.state;
     const userid = this.props.user.user._id;
+    console.log(logo);
     const user = {
       userid,
       logo,
@@ -74,7 +103,7 @@ class Profile extends Component {
                     src={
                       this.state.url
                         ? this.state.url
-                        : `${proxy}/public/${this.props.user.user.profileImg}`
+                        : `${this.props.user.user.profileImg}`
                     }
                     onMouseOver={this.handleMouseOver}
                     onMouseOut={this.handleMouseOut}
@@ -123,7 +152,7 @@ class Profile extends Component {
             Save Changes
           </button>
         </div>
-        {followed_org
+        {/*followed_org
           ? followed_org.map((org) => {
               <React.Component key={org._id}>
                 <div className="">
@@ -134,7 +163,7 @@ class Profile extends Component {
                 </div>
               </React.Component>;
             })
-          : ""}
+          : ""*/}
         <div className="profile-teams-followed">
           <div>
             <h3>Teams followed: {followed_org_nr}</h3>
@@ -144,7 +173,7 @@ class Profile extends Component {
                 <div className="teams-followed" key={org._id}>
                   <div className="logo-team-label">
                     <div>
-                      <img src={`${proxy}public/${org.logo}`} alt="" />
+                      <img src={`${org.logo}`} alt="" />
                     </div>
                     <div>{org.name}</div>
                   </div>

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { proxy } from "../../package.json";
 import { Link } from "react-router-dom";
 import { loadTeamAdminRequests } from "../actions/teamActions";
 import { connect } from "react-redux";
@@ -29,11 +28,15 @@ class YourTeams extends Component {
     ) {
       this.setState({ requests: this.props.team.team_admin_requests_list });
     }
+    if (
+      prevProps.team.team_admin_request !== this.props.team.team_admin_request
+    ) {
+      this.props.loadTeamAdminRequests(this.props.user.user._id);
+    }
   }
 
   acceptRequest = (id) => {
     this.props.acceptRequest(id);
-    this.props.loadTeamAdminRequests(this.props.user.user._id);
   };
 
   setCurrentOrganization = (org, teamid) => {
@@ -60,9 +63,7 @@ class YourTeams extends Component {
               <div key={r._id} className="your-team-item mb-2">
                 <div className="your-team-item-left">
                   <img
-                    src={`${proxy}/public/${
-                      r.organization.logo ? r.organization.logo : ""
-                    }`}
+                    src={`${r.organization.logo ? r.organization.logo : ""}`}
                     alt=""
                   />
 
@@ -97,7 +98,7 @@ class YourTeams extends Component {
             .map((r) => (
               <div key={r._id} className="your-team-item">
                 <div className="your-team-item-left">
-                  <img src={`${proxy}/public/${r.organization.logo}`} alt="" />
+                  <img src={`${r.organization.logo}`} alt="" />
                   <div className="d-flex">
                     <div className="mx-1">
                       <strong>{r.organization.name}</strong>

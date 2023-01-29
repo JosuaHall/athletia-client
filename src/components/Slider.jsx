@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { proxy } from "../../package.json";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import PropTypes from "prop-types";
@@ -148,7 +147,7 @@ class Slider extends Component {
                 )}
                 <img
                   className="organization-logo"
-                  src={`${proxy}/public/${this.props.organization.allOrganizations
+                  src={`${this.props.organization.allOrganizations
                     .filter((org) => {
                       return org.name == event.opponent;
                     })
@@ -189,9 +188,7 @@ class Slider extends Component {
                   <div className="event-going-list" key={user._id}>
                     <img
                       className="organization-logo"
-                      src={`${proxy}/public/${
-                        user.profileImg ? user.profileImg : ""
-                      }`}
+                      src={`${user.profileImg ? user.profileImg : ""}`}
                       alt="..."
                     />
                     <div>{user.name}</div>

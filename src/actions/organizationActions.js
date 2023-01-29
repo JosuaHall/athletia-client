@@ -14,6 +14,9 @@ export const createOrganization =
   ({ user, logo, name }) =>
   (dispatch) => {
     // Headers
+    const config = {
+      headers: { "content-type": "multipart/form-data" },
+    };
 
     //Request body
     //const body = JSON.stringify({ name, admin_email });
@@ -23,7 +26,7 @@ export const createOrganization =
     formData.append("name", name);
 
     axios
-      .post(`${proxy}/api/organizations/create/${user}`, formData)
+      .post(`${proxy}/api/organizations/create/${user}`, formData, config)
       .then((res) => {
         dispatch({ type: ORGANIZATION_CREATED, payload: res.data });
       })

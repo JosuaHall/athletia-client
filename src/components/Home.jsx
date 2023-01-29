@@ -12,7 +12,7 @@ import {
 import { setCurrentTeam } from "./../actions/teamActions";
 import { Link } from "react-router-dom";
 import HomeCards from "./HomeCards";
-import { proxy } from "../../package.json";
+
 class Home extends Component {
   state = {
     organization: "",
@@ -96,7 +96,7 @@ class Home extends Component {
                       <div>
                         <img
                           className="search-field-logo"
-                          src={`${proxy}/public/${org.logo}`}
+                          src={`${org.logo}`}
                           alt=""
                         />
                       </div>
@@ -131,7 +131,7 @@ class Home extends Component {
                       >
                         <img
                           className="search-field-logo"
-                          src={`${proxy}/public/${this.state.selectedOrg.logo}`}
+                          src={`${this.state.selectedOrg.logo}`}
                           alt=""
                         />
                         <div>{team.sport}</div>

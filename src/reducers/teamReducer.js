@@ -41,16 +41,19 @@ export default function (state = initialState, action) {
     case TEAM_ADMIN_REQUEST_SENT:
       return {
         ...state,
+        isLoading: true,
         team_admin_request: action.payload,
       };
     case TEAM_ADMIN_REQUEST_UPDATED:
       return {
         ...state,
+        isLoading: false,
         team_admin_request: action.payload,
       };
     case TEAM_ADMIN_REQUESTS_LOADED:
       return {
         ...state,
+        isLoading: false,
         team_admin_requests_list: action.payload,
       };
     case SPORTS_LOADED:

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { proxy } from "../../package.json";
 import { connect } from "react-redux";
 import TeamSchedule from "./TeamSchedule";
 import PropTypes from "prop-types";
@@ -8,6 +7,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getFilteredUsers } from "../actions/authActions";
+import LoadingSpinner from "./LoadingSpinner";
 import {
   sendTeamAdminRequest,
   getTeamAdminRequests,
@@ -51,6 +51,15 @@ class TeamManagement extends Component {
     if (prevProps.user.filtered_users !== this.props.user.filtered_users) {
       this.setState({ users: this.props.user.filtered_users });
     }
+    if (
+      prevProps.team.team_admin_request !== this.props.team.team_admin_request
+    ) {
+      this.props.getTeamAdminRequests(
+        this.props.user.user._id,
+        this.props.team.selected_team._id
+      );
+    }
+
     if (
       prevProps.team.team_admin_requests_list !==
       this.props.team.team_admin_requests_list
@@ -138,10 +147,6 @@ class TeamManagement extends Component {
       team._id,
       status
     );
-    this.props.getTeamAdminRequests(
-      this.props.user.user._id,
-      this.props.team.selected_team._id
-    );
   };
 
   render() {
@@ -158,7 +163,7 @@ class TeamManagement extends Component {
         <div className="d-inline-flex gap-3 mb-4 justify-content-center align-items-center">
           <img
             className="organization-logo"
-            src={`${proxy}/public/${org ? org.logo : ""}`}
+            src={`${org ? org.logo : ""}`}
             alt=""
           />
           <div className="organization-team-header">
@@ -214,7 +219,7 @@ class TeamManagement extends Component {
                               {user.profileImg ? (
                                 <img
                                   className="organization-logo"
-                                  src={`${proxy}/public/${
+                                  src={`${
                                     user.profileImg ? user.profileImg : ""
                                   }`}
                                   alt="..."
@@ -227,18 +232,49 @@ class TeamManagement extends Component {
                             </div>
                             <div className="p-2">{user.name}</div>
                           </div>
+
                           <div>
                             {team_admins_pending.includes(user._id) ? (
-                              <div className="btn btn-outline-primary p-2">
-                                pending
-                              </div>
+                              this.props.team.isLoading &&
+                              this.props.team.team_admin_request
+                                .user_recipient == user._id ? (
+                                <div className="btn btn-outline-primary p-1">
+                                  <LoadingSpinner />
+                                </div>
+                              ) : (
+                                <div className="btn btn-outline-primary p-2">
+                                  pending
+                                </div>
+                              )
                             ) : team_admins_accepted.includes(user._id) ? (
-                              <div className="btn btn-outline-success p-2">
-                                admin
-                              </div>
+                              this.props.team.isLoading &&
+                              this.props.team.team_admin_request
+                                .user_recipient == user._id ? (
+                                <div className="btn btn-outline-primary p-1">
+                                  <LoadingSpinner />
+                                </div>
+                              ) : (
+                                <div className="btn btn-outline-success p-2">
+                                  admin
+                                </div>
+                              )
                             ) : team_admins_declined.includes(user._id) ? (
-                              <div className="btn btn-outline-danger p-2">
-                                declined
+                              this.props.team.isLoading &&
+                              this.props.team.team_admin_request
+                                .user_recipient == user._id ? (
+                                <div className="btn btn-outline-primary p-1">
+                                  <LoadingSpinner />
+                                </div>
+                              ) : (
+                                <div className="btn btn-outline-danger p-2">
+                                  declined
+                                </div>
+                              )
+                            ) : this.props.team.isLoading &&
+                              this.props.team.team_admin_request
+                                .user_recipient == user._id ? (
+                              <div className="btn btn-outline-primary p-1">
+                                <LoadingSpinner />
                               </div>
                             ) : (
                               <div
@@ -271,16 +307,23 @@ class TeamManagement extends Component {
                   return (
                     <div className="team-management-team-admin-list-item">
                       <div>
-                        <img
-                          className="profile-pic-team-admin"
-                          src={`${proxy}/public/${
-                            a.user_recipient.profileImg
-                              ? a.user_recipient.profileImg
-                              : ""
-                          }`}
-                          alt="..."
-                        />
+                        {a.user_recipient.profileImg ? (
+                          <img
+                            className="profile-pic-team-admin"
+                            src={`${
+                              a.user_recipient.profileImg
+                                ? a.user_recipient.profileImg
+                                : ""
+                            }`}
+                            alt="..."
+                          />
+                        ) : (
+                          <div className="no-profileImg-logo-home p-2">
+                            <FontAwesomeIcon icon={["fa", "user"]} />
+                          </div>
+                        )}
                       </div>
+
                       <div>{a.user_recipient.name}</div>
                       <button
                         onClick={() => {

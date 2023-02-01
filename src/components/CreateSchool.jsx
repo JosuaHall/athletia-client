@@ -95,7 +95,7 @@ class CreateSchool extends Component {
               )}
             </div>
             <div>
-              <label for="inputTag" className="label-style">
+              <label htmlFor="inputTag" className="label-style">
                 <FontAwesomeIcon icon={["fa", "pen"]} size="1x" />
                 <input
                   type="file"

@@ -654,7 +654,7 @@ user-select: none;
   margin-bottom: .5em;
   padding: 0 0;
   column-gap: 5px;
-  margin-left: 0;
+  margin-left: 0; 
   margin-right: 0;
   transition: .2s;
 }
@@ -1025,7 +1025,7 @@ user-select: none;
 
 .profileImg-attending {
   border: none;
-  width: inherit;
+  width: 2em;
   border-radius: 50%;
 }
 

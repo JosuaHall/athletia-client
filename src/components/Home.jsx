@@ -141,7 +141,7 @@ class Home extends Component {
                 : ""}
             </div>
           </div>
-        ) : this.props.user.user.organizations_followed == null ? ( //check if user follows any teams? redux: auth.user.teams_followed
+        ) : this.props.user.user.organizations_followed == "" ? ( //check if user follows any teams? redux: auth.user.teams_followed
           <div className="no-teams-followed-homepage">
             <div>
               <FontAwesomeIcon icon={["fa", "user"]} size="1x" />

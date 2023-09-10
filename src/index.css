@@ -91,8 +91,8 @@ p {
   align-items: center;
   margin: 0;
   justify-content: center;
-  width: auto !important;
-  margin: auto !important;
+  width: 100% !important;
+  margin: 0 auto !important;
   top: 3.5em;
   left: 0px;
   height: 100%;
@@ -172,6 +172,7 @@ p {
   padding: 0 2em;
   padding-bottom: 4em;
   margin: auto;
+  width: 100%;
 }
 
 .information-page-layout-right img{
@@ -427,11 +428,13 @@ nav {
   border: solid lightgray 1px;
   border-radius: 5px;
   padding: 0 1em;
+  width: 500px;
 }
 
 .search-input{
   border-style: none;
   padding-left: 1em;
+  width: 100%;
 }
 .search-input:focus {
   background-color: #ffffff ;
@@ -1349,6 +1352,160 @@ user-select: none;
   height: 3em;
 }
 
+
+
+
+
+
+
+/*ADMIN CSS*******************/
+.dashboard {
+  width: 100%;
+  margin: 2em auto;
+}
+
+.dashboard-navigation {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1em;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.dashboard-navigation * {
+  margin: 0 2em;
+}
+
+.navigation-button {
+  border-radius: 2em;
+  background-color: #d4d4d4;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: black;
+  padding: 1em;
+}
+
+.selected {
+  background-color: #082b4d;
+  color: white;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2em 0;
+}
+
+.dashboard-table-headers{
+  display: grid;
+  grid-template-columns: .7fr 1.5fr 3fr .5fr;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  gap: 1em;
+  margin: .5em;
+}
+
+.dashboard-table-headers-owner-request{
+  display: grid;
+  grid-template-columns:  2fr .7fr 1fr .8fr;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  gap: 1em;
+  margin: .5em;
+}
+
+.dashboard-table-headers-change-admin-request{
+  display: grid;
+  grid-template-columns:  2fr .1fr .6fr 2fr .3fr;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  gap: 1em;
+  margin: .5em;
+}
+
+.dashboard-table-headers > h2 {
+  font-size: 20px;
+}
+
+.dashboard-table-headers > div {
+  font-size: 20px;
+}
+
+.user-card {
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr 2fr;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  border-radius: .5em;
+  padding: 1em;
+  margin-right: 1em;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.user-card-change-admin {
+  display: grid;
+  grid-template-columns: .5fr 1fr 1fr 1fr;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: .1em;
+  text-align: left;
+  border-radius: .5em;
+  padding: 1em .5em;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.user-card-change-admin-info{
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1em 0;
+}
+
+.dashboard-table-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.denied-button{
+  padding: .5em 1em;
+  margin: 1em;
+  border-radius: 10px;
+  background-color: #B00E0E;
+  cursor: pointer;
+}
+
+.approve-button{
+  padding: .5em 1em;
+  border-radius: 10px;
+  background-color: #0EB019;
+  cursor: pointer;
+}
+
+.image {
+  display: flex;
+  width: 100px;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-right: 1em;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+
 @media only screen and (max-width: 480px) {
   .App {
     width: 100%;
@@ -1562,9 +1719,10 @@ user-select: none;
 
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1749px) {
   .App {
     width: 90%;
+    margin: 0 auto;
   }
 
   .alice-carousel__prev-btn,
@@ -1576,3 +1734,4 @@ user-select: none;
     color: transparent;
 }
 }
+

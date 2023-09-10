@@ -17,6 +17,8 @@ import TeamSetup from "./components/TeamSetup";
 import ProfileSetup from "./components/ProfileSetup";
 import TeamManagement from "./components/TeamManagement";
 
+import AdminDashboard from "./components/AdminDashboard";
+
 import SchoolDetails from "./components/SchoolDetails";
 import TeamDetails from "./components/TeamDetails";
 import Home from "./components/Home";
@@ -70,6 +72,9 @@ class App extends Component {
             </AuthRoute>
             <AuthRoute path="/register/setup" type="guest">
               <ProfileSetup />
+            </AuthRoute>
+            <AuthRoute path="/admin/dashboard" type="private">
+              <AdminDashboard />
             </AuthRoute>
             <AuthRoute path="/events/:id" type="private">
               <Home />

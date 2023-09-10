@@ -45,59 +45,110 @@ class AppNavbar extends Component {
     const { isAuthenticated, user } = this.props.auth;
     //navbar when logged in
     const authLinks = (
-      <div className="auth-navbar-items">
-        <div>
-          {user ? <div className="profile-navbar-name">{user.name}</div> : ""}
+      <React.Fragment>
+        <div className="nav-brand">
+          <Link
+            className="link"
+            onClick={() => this.setState({ isOpen: false })}
+            to={`/events/${user ? user._id : ""}`}
+          >
+            <img className="athletia-logo" src={pic2} width="40px" />
+          </Link>
         </div>
-
-        <div>
-          <div className="link nav-expand-button" onClick={this.toggle}>
-            <FontAwesomeIcon icon={["fa", "bars"]} size="2x" />
+        <div className="auth-navbar-items">
+          <div>
+            {user ? <div className="profile-navbar-name">{user.name}</div> : ""}
           </div>
 
-          {this.state.isOpen ? (
-            <div className="nav-dropdown-list">
-              <Link
-                onClick={this.toggle}
-                to={`/events/${user ? user._id : ""}`}
-                className="link-dropdown"
-              >
-                <div className="py-2 px-3">Athletia Home</div>
-              </Link>
-              <Link
-                onClick={this.toggle}
-                to={`/setup/school/${user ? user._id : ""}`}
-                className="link-dropdown"
-              >
-                <div className="py-2 px-3">Organization Setup</div>
-              </Link>
-              <Link
-                onClick={this.toggle}
-                to={`/profile/settings/${user ? user._id : ""}`}
-                className="link-dropdown"
-              >
-                <div className="py-2 px-3">Edit Profile</div>
-              </Link>
-              <Link
-                onClick={this.toggle}
-                to={`/your/teams/${user ? user._id : ""}`}
-                className="link-dropdown"
-              >
-                <div className="py-2 px-3">Your Teams</div>
-              </Link>
-              <Link
-                onClick={this.logUserOut}
-                to="/login"
-                className="link-dropdown"
-              >
-                <div className="py-2 px-3">Logout</div>
-              </Link>
+          <div>
+            <div className="link nav-expand-button" onClick={this.toggle}>
+              <FontAwesomeIcon icon={["fa", "bars"]} size="2x" />
             </div>
-          ) : (
-            ""
-          )}
+
+            {this.state.isOpen ? (
+              <div className="nav-dropdown-list">
+                <Link
+                  onClick={this.toggle}
+                  to={`/events/${user ? user._id : ""}`}
+                  className="link-dropdown"
+                >
+                  <div className="py-2 px-3">Athletia Home</div>
+                </Link>
+                <Link
+                  onClick={this.toggle}
+                  to={`/setup/school/${user ? user._id : ""}`}
+                  className="link-dropdown"
+                >
+                  <div className="py-2 px-3">Organization Setup</div>
+                </Link>
+                <Link
+                  onClick={this.toggle}
+                  to={`/profile/settings/${user ? user._id : ""}`}
+                  className="link-dropdown"
+                >
+                  <div className="py-2 px-3">Edit Profile</div>
+                </Link>
+                <Link
+                  onClick={this.toggle}
+                  to={`/your/teams/${user ? user._id : ""}`}
+                  className="link-dropdown"
+                >
+                  <div className="py-2 px-3">Your Teams</div>
+                </Link>
+                <Link
+                  onClick={this.logUserOut}
+                  to="/login"
+                  className="link-dropdown"
+                >
+                  <div className="py-2 px-3">Logout</div>
+                </Link>
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
         </div>
-      </div>
+      </React.Fragment>
+    );
+
+    //admin NavOptions
+    const adminLinks = (
+      <React.Fragment>
+        <div className="nav-brand">
+          <Link
+            className="link"
+            onClick={() => this.setState({ isOpen: false })}
+            to={`/admin/dashboard`}
+          >
+            <img className="athletia-logo" src={pic2} width="40px" />
+          </Link>
+        </div>
+        <div className="auth-navbar-items">
+          <div>
+            {user ? <div className="profile-navbar-name">{user.name}</div> : ""}
+          </div>
+
+          <div>
+            <div className="link nav-expand-button" onClick={this.toggle}>
+              <FontAwesomeIcon icon={["fa", "bars"]} size="2x" />
+            </div>
+
+            {this.state.isOpen ? (
+              <div className="nav-dropdown-list">
+                <Link
+                  onClick={this.logUserOut}
+                  to="/login"
+                  className="link-dropdown"
+                >
+                  <div className="py-2 px-3">Logout</div>
+                </Link>
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
+        </div>
+      </React.Fragment>
     );
 
     const authAdmin = (
@@ -112,26 +163,37 @@ class AppNavbar extends Component {
 
     //navbar if not authorized
     const guestLinks = (
-      <div className="guest-navbar-items">
-        <div>
+      <React.Fragment>
+        <div className="nav-brand">
           <Link
-            onClick={this.props.clearErrors}
-            to="/register"
             className="link"
+            onClick={() => this.setState({ isOpen: false })}
+            to={`/`}
           >
-            Register
+            <img className="athletia-logo" src={pic2} width="40px" />
           </Link>
         </div>
-        <div>
-          <Link onClick={this.props.clearErrors} to="/login" className="link">
-            Login
-          </Link>
+        <div className="guest-navbar-items">
+          <div>
+            <Link
+              onClick={this.props.clearErrors}
+              to="/register"
+              className="link"
+            >
+              Register
+            </Link>
+          </div>
+          <div>
+            <Link onClick={this.props.clearErrors} to="/login" className="link">
+              Login
+            </Link>
+          </div>
         </div>
-      </div>
+      </React.Fragment>
     );
     return (
       <div className="navbar">
-        <div className="nav-brand">
+        {/*<div className="nav-brand">
           <Link
             className="link"
             onClick={() => this.setState({ isOpen: false })}
@@ -139,9 +201,13 @@ class AppNavbar extends Component {
           >
             <img className="athletia-logo" src={pic2} width="40px" />
           </Link>
-        </div>
+    </div>*/}
 
-        {isAuthenticated ? authLinks : guestLinks}
+        {isAuthenticated && user.isHeadAdminOfAhletia === true
+          ? adminLinks
+          : isAuthenticated && user.isHeadAdminOfAhletia === false
+          ? authLinks
+          : guestLinks}
       </div>
     );
   }

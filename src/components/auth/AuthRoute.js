@@ -5,8 +5,18 @@ import { Redirect, Route } from "react-router";
 const AuthRoute = (props) => {
   const { isAuthenticated, type, user } = props;
   if (user.user) {
-    if (type === "guest" && isAuthenticated) {
-      //history.replace(`${lo}/${user._id}`);
+    console.log(user.user.isHeadAdminOfAhletia);
+    if (
+      type === "guest" &&
+      isAuthenticated &&
+      user.user.isHeadAdminOfAhletia === true
+    ) {
+      return <Redirect to={`/admin/dashboard`} />;
+    } else if (
+      type === "guest" &&
+      isAuthenticated &&
+      user.user.isHeadAdminOfAhletia === false
+    ) {
       return <Redirect to={`/events/${user.user._id}`} />;
     } else if (type === "private" && !isAuthenticated)
       return <Redirect to={`/login`} />;
